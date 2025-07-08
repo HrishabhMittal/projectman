@@ -107,15 +107,19 @@ private:
             if (matchnext(";")) {
                 header<<l.gettoken();
             } else if (matchnext("{")) {
+                std::cout<<"found {"<<std::endl;
                 int scope=1;
                 bool run=true;
+                l.gettoken();
                 while (run) {
+                    std::cout<<scope<<std::endl;
                     if (matchnext(TokenType::TK_EOF)) return 0;
                     if (matchnext("}")) scope--;
                     else if (matchnext("{")) scope++;
                     if (scope==0) run=false;
                     l.gettoken();
                 }
+                std::cout<<"done with ts"<<std::endl;
                 header<<";";
             }
         } else if (matchnext(TokenType::TK_EOF)) {

@@ -114,6 +114,8 @@ public:
                 b=false;
             }
             if (b) out=_gettoken();
+        } else if (out.value=="\n") {
+            while (_peektoken().value=="\n") _gettoken();
         }
         std::cout<<out<<std::endl;
         return out;
